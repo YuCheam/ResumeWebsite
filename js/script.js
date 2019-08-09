@@ -1,20 +1,29 @@
-const parallax  = document.getElementById('parallax');
+let isScrolling;
+let scrollDisabled = false;
 
-window.addEventListener('scroll', function() {
-    window.requestAnimationFrame(parallaxEffect);
-    stickyHeader();
+window.addEventListener('wheel', function(e) {
+    if (!scrollDisabled) {
+        clearTimeout(isScrolling);
+
+        isScrolling = setTimeout(function() {
+            snapEffect(e)
+        }, 66);
+    }
 });
 
-function parallaxEffect() {
-    parallax.style.transform = `translateY(${1+(window.pageYOffset*.3)}px)`
-}
+function snapEffect(event) {
+    scrollDisabled = true;
+    setTimeout(function() {
+        scrollDisabled = false;
+    }, 600);
 
-let offsetTop = document.getElementById('nav').offsetTop;
+    const container = document.getElementById('container');
+    const screenHeight = window.innerHeight;
 
-function stickyHeader() {
-    if (window.pageYOffset >= offsetTop) {
-        document.getElementById('nav').classList.add('sticky')
+    if (event.deltaY < 0 ) {
+        container.style.transform = `translate3d(0, ${container.getBoundingClientRect().y + screenHeight}px, 0)`
     } else {
-        document.getElementById('nav').classList.remove('sticky')
+        container.style.transform = `translate3d(0, ${container.getBoundingClientRect().y - screenHeight}px, 0)`
     }
+
 }

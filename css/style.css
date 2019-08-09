@@ -6,12 +6,15 @@
     opacity: 100%;
   }
 }
+body {
+  overflow: hidden;
+}
+
 .parallaxContainer {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  z-index: -1;
+  transition: transform 800ms;
 }
 
 .parallax-child {
@@ -46,22 +49,25 @@
   animation-duration: 2.7s;
 }
 
+.section {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
 nav {
   position: relative;
   z-index: 999;
 }
-
-.content {
-  position: relative;
-  z-index: 1;
-  padding: 16px 100px;
-  background-color: white;
-}
-
-.sticky {
+nav.sticky {
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+.content {
+  padding: 16px 20vw;
+  background-color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
