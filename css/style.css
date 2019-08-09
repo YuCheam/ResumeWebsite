@@ -6,13 +6,32 @@
     opacity: 100%;
   }
 }
+.parallaxContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 1px;
+  perspective-origin: 0 0;
+  transform-style: preserve-3d;
+}
+
+.parallax-child {
+  z-index: -1;
+  height: 100vh;
+  transform-origin: 0 0;
+  transform: translateZ(-2px) scale(3);
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../image/bck1.jpg");
+  background-size: auto 100vh;
+}
+
 #bkg1 {
   position: absolute;
   height: 100vh;
   width: 100%;
   z-index: -1;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../image/bck1.jpg");
-  background-size: auto 100vh;
+  background-attachment: scroll;
 }
 
 #subName {
@@ -41,11 +60,6 @@
   animation-duration: 2.7s;
 }
 
-#main {
-  position: absolute;
-  top: 100vh;
-}
-
 nav {
   position: relative;
   z-index: 999;
@@ -59,8 +73,7 @@ nav {
 }
 
 .sticky {
-  position: sticky;
-  top: 0;
+  position: absolute;
   width: 100%;
 }
 
