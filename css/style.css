@@ -6,32 +6,22 @@
     opacity: 100%;
   }
 }
-.subName-fade-in {
-  animation-name: fade-in;
-  animation-delay: 200ms;
-  animation-fill-mode: backwards;
-  animation-duration: 1.8s;
+@keyframes scale {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1.2, 1.2);
+  }
 }
-
-.name-fade-in {
-  animation-name: fade-in;
-  animation-delay: 1.2s;
-  animation-fill-mode: backwards;
-  animation-duration: 2.7s;
-}
-
-.hidden {
-  opacity: 0;
-}
-
 body {
   overflow: hidden;
+  position: relative;
 }
 
 .main {
-  position: relative;
+  position: absolute;
   width: 100%;
-  height: 100vh;
   transition: transform 800ms;
 }
 
@@ -47,6 +37,12 @@ body {
   left: 15%;
   color: white;
 }
+#subName.active {
+  animation-name: fade-in;
+  animation-delay: 200ms;
+  animation-fill-mode: both;
+  animation-duration: 1.8s;
+}
 
 #name {
   position: absolute;
@@ -55,25 +51,44 @@ body {
   left: 15%;
   color: white;
 }
+#name.active {
+  animation-name: fade-in;
+  animation-delay: 1.2s;
+  animation-fill-mode: both;
+  animation-duration: 2.7s;
+}
 
 .section {
   position: relative;
   height: 100vh;
   width: 100vw;
 }
-.section.content {
+
+#focusContainer {
+  position: relative;
+  height: 100vh;
+  width: 50vw;
   overflow: hidden;
-  padding: 16px 20vw;
+}
+#focusContainer #focus {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background: url("../image/focus.jpg");
+  background-size: cover;
+  background-position: right;
+}
+#focusContainer #focus.active {
+  animation: scale 6.5s infinite;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-direction: alternate-reverse;
 }
 
-nav {
-  position: relative;
-  z-index: 999;
-}
-nav.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
+.sectionTitle {
+  position: absolute;
+  bottom: 3vh;
+  left: 3vw;
 }
 
 /*# sourceMappingURL=style.css.map */

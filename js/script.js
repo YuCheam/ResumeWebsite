@@ -1,7 +1,8 @@
 let isScrolling;
 let scrollDisabled = false;
 let activeHeight = 0;
-let hiddenElem = document.querySelectorAll('.hidden');
+let animatedElem = document.querySelectorAll('.animate');
+let elementTop = Array.from(animatedElem, x => x.getBoundingClientRect().top);
 const container = document.getElementById('container');
 
 
@@ -10,7 +11,7 @@ window.addEventListener('wheel', function(e) {
         clearTimeout(isScrolling);
 
         isScrolling = setTimeout(function() {
-            snapEffect(e)
+            snapEffect(e);
         }, 66);
     }
 });
@@ -21,43 +22,27 @@ function snapEffect(event) {
         scrollDisabled = false;
     }, 700);
 
-    const screenHeight = window.innerHeight;
-
     if (event.deltaY < 0 ) {
-        activeHeight += screenHeight;
-        console.log('up');
-        container.style.transform = `translate3d(0, ${activeHeight}px, 0)`
+        activeHeight += 100;
+        elementTop = elementTop.map(item => {return item += window.innerHeight});
+        console.log('up')
+        container.style.transform = `translate3d(0, ${activeHeight}vh, 0)`
     } else {
-        activeHeight -= screenHeight;
-        container.style.transform = `translate3d(0, ${activeHeight}px, 0)`
+        activeHeight -= 100;
+        elementTop = elementTop.map((item => {return item -= window.innerHeight}));
+        container.style.transform = `translate3d(0, ${activeHeight}vh, 0)`;
     }
 
-    setTimeout(checkPosition, 700)
+    checkPosition()
 }
 
 function checkPosition() {
-    let rangeBottom = container.getBoundingClientRect().top +activeHeight;
-    let rangeTop = rangeBottom + window.innerHeight;
-    console.log(rangeBottom, rangeTop)
-    for (x of hiddenElem) {
-        let offset = x.getBoundingClientRect().top;
-        if( offset <= rangeTop && offset >= rangeBottom ) {
-            switch ( x.id ) {
-                case 'subName':
-                    x.className = x.className.replace('hidden', 'subName-fade-in');
-                    break;
-                case 'name':
-                    x.className = x.className.replace('hidden', 'name-fade-in');
-                    break;
-            }
+    for (x of elementTop) {
+        let element = animatedElem[elementTop.indexOf(x)];
+        if( x < window.innerHeight && x >= 0 ) {
+            element.className = element.className.replace('animate', 'active');
         } else {
-            switch (x.id) {
-                case 'subName':
-                    x.className = x.className.replace('subName-fade-in', 'hidden');
-                    break;
-                case 'name':
-                    x.className = x.className.replace('name-fade-in', 'hidden');
-            }
+            element.className = element.className.replace('active', 'animate');
         }
     }
 }
