@@ -6,6 +6,24 @@
     opacity: 100%;
   }
 }
+.subName-fade-in {
+  animation-name: fade-in;
+  animation-delay: 200ms;
+  animation-fill-mode: backwards;
+  animation-duration: 1.8s;
+}
+
+.name-fade-in {
+  animation-name: fade-in;
+  animation-delay: 1.2s;
+  animation-fill-mode: backwards;
+  animation-duration: 2.7s;
+}
+
+.hidden {
+  opacity: 0;
+}
+
 body {
   overflow: hidden;
 }
@@ -17,8 +35,8 @@ body {
   transition: transform 800ms;
 }
 
-#coverImage {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../image/bck1.jpg");
+#section0 {
+  background: url("../image/bck1.jpg");
   background-size: auto 100vh;
 }
 
@@ -28,10 +46,6 @@ body {
   top: 42%;
   left: 15%;
   color: white;
-  animation-name: fade-in;
-  animation-delay: 200ms;
-  animation-fill-mode: backwards;
-  animation-duration: 1.8s;
 }
 
 #name {
@@ -40,10 +54,6 @@ body {
   top: 47%;
   left: 15%;
   color: white;
-  animation-name: fade-in;
-  animation-delay: 1.2s;
-  animation-fill-mode: backwards;
-  animation-duration: 2.7s;
 }
 
 .section {
