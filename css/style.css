@@ -6,20 +6,46 @@
     opacity: 100%;
   }
 }
-.parallaxContainer {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+@keyframes scale {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1.2, 1.2);
+  }
+}
+@keyframes grow {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes shrink {
+  0% {
+    top: 0;
+    opacity: 100%;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+body {
   overflow: hidden;
-  z-index: -1;
+  position: relative;
 }
 
-.parallax-child {
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../image/bck1.jpg");
+.main {
+  position: absolute;
+  width: 100%;
+  transition: transform 800ms;
+}
+
+#section0 {
+  background: url("../image/bck1.jpg");
   background-size: auto 100vh;
-  transform-style: preserve-3d;
 }
 
 #subName {
@@ -28,9 +54,11 @@
   top: 42%;
   left: 15%;
   color: white;
+}
+#subName.active {
   animation-name: fade-in;
   animation-delay: 200ms;
-  animation-fill-mode: backwards;
+  animation-fill-mode: both;
   animation-duration: 1.8s;
 }
 
@@ -40,28 +68,99 @@
   top: 47%;
   left: 15%;
   color: white;
+}
+#name.active {
   animation-name: fade-in;
   animation-delay: 1.2s;
-  animation-fill-mode: backwards;
+  animation-fill-mode: both;
   animation-duration: 2.7s;
 }
 
-nav {
+.section {
   position: relative;
-  z-index: 999;
+  height: 100vh;
+  width: 100vw;
 }
 
-.content {
+#focusContainer {
   position: relative;
-  z-index: 1;
-  padding: 16px 100px;
-  background-color: white;
+  height: 100vh;
+  width: 50vw;
+  overflow: hidden;
+}
+#focusContainer #focus {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background: url("../image/focus.jpg");
+  background-size: cover;
+  background-position: right;
+  animation: scale 6.5s infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+#focusContainer #focus.animate {
+  animation-play-state: paused;
+}
+#focusContainer #focus.active {
+  animation-play-state: running;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
+.imageTitle {
+  position: absolute;
+  bottom: 3vh;
+  left: 3vw;
+  font-weight: 600;
+}
+
+.sectionTitle {
+  position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 0.9;
+  transition: all 5s;
+}
+.sectionTitle.animate {
+  animation: shrink 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+}
+.sectionTitle.active {
+  animation: grow 1.25s, fade-in 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.line {
+  position: relative;
+  top: 100%;
+  height: 100%;
+  width: 5px;
+  background-color: black;
+}
+.line.animate {
+  animation: shrink 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+}
+.line.active {
+  animation: grow 1.25s, fade-in 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.sectionInfo {
+  position: relative;
+}
+.sectionInfo.animate {
+  animation: shrink 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+}
+.sectionInfo.active {
+  animation: fade-in 0.75s;
+  animation-fill-mode: both;
+  animation-delay: 1.5s;
 }
 
 /*# sourceMappingURL=style.css.map */
