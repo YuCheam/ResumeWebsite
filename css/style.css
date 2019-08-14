@@ -16,10 +16,20 @@
 }
 @keyframes grow {
   0% {
-    height: 0px;
+    top: 100%;
   }
   100% {
-    height: 90%;
+    top: 0;
+  }
+}
+@keyframes shrink {
+  0% {
+    top: 0;
+    opacity: 100%;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
   }
 }
 body {
@@ -85,12 +95,15 @@ body {
   background: url("../image/focus.jpg");
   background-size: cover;
   background-position: right;
+  animation: scale 6.5s infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+#focusContainer #focus.animate {
+  animation-play-state: paused;
 }
 #focusContainer #focus.active {
-  animation: scale 6.5s infinite;
-  animation-fill-mode: both;
-  animation-timing-function: linear;
-  animation-direction: alternate-reverse;
+  animation-play-state: running;
 }
 
 .imageTitle {
@@ -101,29 +114,53 @@ body {
 }
 
 .sectionTitle {
-  position: absolute;
-  bottom: 0;
-  font-weight: 700;
+  position: relative;
+  font-weight: 600;
   text-transform: uppercase;
   line-height: 0.9;
+  transition: all 5s;
+}
+.sectionTitle.animate {
+  animation: shrink 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
 }
 .sectionTitle.active {
-  animation: grow 1.5s;
+  animation: grow 1.25s, fade-in 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 
 .line {
-  position: absolute;
-  bottom: 0;
-  height: 5px;
+  position: relative;
+  top: 100%;
+  height: 100%;
   width: 5px;
   background-color: black;
 }
+.line.animate {
+  animation: shrink 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+}
 .line.active {
-  animation: grow 1.5s;
-  animation-fill-mode: forwards;
+  animation: grow 1.25s, fade-in 0.5s;
+  animation-fill-mode: both;
   animation-timing-function: ease-out;
+}
+
+.sectionInfo {
+  position: relative;
+}
+.sectionInfo.animate {
+  animation: shrink 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+}
+.sectionInfo.active {
+  animation: fade-in 0.75s;
+  animation-fill-mode: both;
+  animation-delay: 1.5s;
 }
 
 /*# sourceMappingURL=style.css.map */

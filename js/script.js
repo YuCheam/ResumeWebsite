@@ -16,6 +16,7 @@ window.addEventListener('wheel', function(e) {
 });
 
 function snapEffect(event) {
+
     scrollDisabled = true;
     setTimeout(function () {
         scrollDisabled = false;
@@ -35,7 +36,6 @@ function snapEffect(event) {
         }));
         container.style.transform = `translate3d(0, ${activeHeight}vh, 0)`;
     }
-
     checkPosition()
 }
 
@@ -43,6 +43,7 @@ function checkPosition() {
     for (let i = 0; i < elementTop.length; i++) {
         let element = animatedElem[i];
         if( elementTop[i] < window.innerHeight && elementTop[i] >= 0 ) {
+            console.log(elementTop[i])
             element.className = element.className.replace('animate', 'active');
         } else {
             element.className = element.className.replace('active', 'animate');
